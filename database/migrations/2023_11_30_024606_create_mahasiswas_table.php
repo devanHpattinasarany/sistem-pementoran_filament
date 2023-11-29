@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('nama');
-            $table->integer('npm')->unique();
+            $table->bigInteger('npm')->unique(20);
             $table->string('alamat');
-            $table->integer('no_hp')->totalDigits(12);
+            $table->bigInteger('no_hp')->totalDigits(20);
             $table->foreignId('dosen_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
