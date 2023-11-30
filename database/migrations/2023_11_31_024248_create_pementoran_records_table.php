@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('pementoran_records', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mahasiswa_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('dosen_id')->constrained()->cascadeOnDelete();
-            $table->string('semester');
-            $table->string('jenis_pertemuan');
-            $table->boolean('ip_mahasiswa');
-            $table->boolean('ipk_mahasiswa');
+            $table->string('mahasiswa_npm');
+            $table->foreign('mahasiswa_npm')->references('npm')->on('mahasiswas')
+                ->onDelete('cascade');
+            $table->string('dosen_nidn');
+            $table->foreign('dosen_nidn')->references('nidn')->on('dosens')
+                ->onDelete('cascade');
+            $table->enum('semester', ['Ganjil', 'Genap', 'Antara']);
+            $table->enum('jenis_pertemuan', ['Pertemuan Awal', 'Pertemuan Tengah', 'Pertemuan Akhir']);
+            $table->decimal('ip_mahasiswa', 4, 2);
+            $table->decimal('ipk_mahasiswa', 4, 2);
             $table->string('permasalahan');
             $table->string('catatan_tindak_lanjut');
             // $table->string('tanda_tangan_dosen');
