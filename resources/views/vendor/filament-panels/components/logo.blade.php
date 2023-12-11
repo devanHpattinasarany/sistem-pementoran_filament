@@ -1,0 +1,1 @@
+<img src="{{asset('/images/Logo_Universitas_Kristen_Indonesia_Maluku.png')}}" alt="logo" class="h-10">
